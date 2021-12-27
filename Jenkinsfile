@@ -6,7 +6,6 @@ pipeline {
     stages {
        stage('Build') {
           steps {
-             updateGitlabCommitStatus name: 'Building', state: 'running'
              sh './gradlew clean build'
           }
        }
