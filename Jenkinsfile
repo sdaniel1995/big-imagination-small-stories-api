@@ -40,7 +40,7 @@ pipeline {
                     def dockerStop = 'docker stop big-imagination-small-stories-api'
                     def dockerRm = 'docker rm big-imagination-small-stories-api'
                     def dockerRmi = 'docker rmi latest'
-                    def dockerRun = 'docker run -d -p 8081:8081 --name=big-imagination-small-stories-api danielshane861/big-imagination-small-stories-api:latest'
+                    def dockerRun = 'docker run -d -p 8081:8080 --name=big-imagination-small-stories-api danielshane861/big-imagination-small-stories-api:latest'
                      sshagent(['AWS']) {
                         // sh "ssh -o StrictHostKeyChecking=no ec2-user@ec2-18-220-242-141.us-east-2.compute.amazonaws.com ${dockerStop}"
                         // sh "ssh -o StrictHostKeyChecking=no ec2-user@ec2-18-220-242-141.us-east-2.compute.amazonaws.com ${dockerRm}"  

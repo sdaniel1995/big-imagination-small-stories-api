@@ -6,10 +6,10 @@ FROM openjdk:11
 WORKDIR /opt
 
 # Set the environment variable key to the value.
-ENV PORT 8081
+ENV PORT 8080
 
 # Define the network ports that this container will listen on at runtime.
-EXPOSE 8081
+EXPOSE 8080
 
 # Copy jar files from local machine to Docker Container
 COPY build/libs/big-imagination-small-stories-api-0.0.1-SNAPSHOT.jar /opt/app.jar
