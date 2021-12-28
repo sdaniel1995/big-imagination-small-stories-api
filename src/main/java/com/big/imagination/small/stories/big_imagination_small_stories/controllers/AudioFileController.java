@@ -60,6 +60,7 @@ public class AudioFileController {
                     dbFile.getName(),
                     fileDownloadUri,
                     dbFile.getType(),
+                    dbFile.getData(),
                     dbFile.getData().length);
         }).collect(Collectors.toList());
 
