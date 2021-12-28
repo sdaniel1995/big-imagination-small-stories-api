@@ -18,29 +18,38 @@ pipeline {
            }
        }
 
-    //    stage('Build Docker Image') {
-    //        steps {
-    //            sh 'docker build -t danielshane861/tic-tac-toe-api .'
-    //        }
-    //    }
+       stage('Build Docker Image') {
+           steps {
+               sh 'docker build -t danielshane861/big-imagination-small-stories-api .'
+           }
+       }
 
-    //    stage('Push Docker Image') {
-    //        steps {
-    //            withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPwd')]) {
-    //                 sh "docker login -u danielshane861 -p ${dockerHubPwd}"
-    //            }   
-    //            sh 'docker push danielshane861/tic-tac-toe-api'
-    //        }
-    //    }
+       stage('Push Docker Image') {
+           steps {
+               withCredentials([usernamePassword(credentialsId: 'DockerHub', passwordVariable: 'dockerHubPwd', usernameVariable: 'dockerHubUsername')]) {
+                    sh "docker login -u danielshane861 -p ${dockerHubPwd}"
+               }   
+               sh 'docker push danielshane861/big-imagination-small-stories-api'
+           }
+       }
 
-    //    stage('Deploy') {
-    //        steps {
-    //            sshagent(['TicTacToeApi-server']) {
-                   
-    //                sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.18.117 docker run -d -p 8080:8080 --name=tic-tac-toe-api danielshane861/tic-tac-toe-api"
-    //            }
-    //        }
-    //    }
+       stage('Deploy') {
+            steps {
+                sh 'docker rmi danielshane861/big-imagination-small-stories-api'
+                script {
+                    def dockerStop = 'docker stop big-imagination-small-stories-api'
+                    def dockerRm = 'docker rm big-imagination-small-stories-api'
+                    def dockerRmi = 'docker rmi danielshane861/big-imagination-small-stories-api'
+                    def dockerRun = 'docker run -d -p 8081:8081 --name=big-imagination-small-stories-api danielshane861/big-imagination-small-stories-api:latest'
+                     sshagent(['AWS']) {
+                        // sh "ssh -o StrictHostKeyChecking=no ec2-user@ec2-18-220-242-141.us-east-2.compute.amazonaws.com ${dockerStop}"
+                        // sh "ssh -o StrictHostKeyChecking=no ec2-user@ec2-18-220-242-141.us-east-2.compute.amazonaws.com ${dockerRm}"  
+                        // sh "ssh -o StrictHostKeyChecking=no ec2-user@ec2-18-220-242-141.us-east-2.compute.amazonaws.com ${dockerRmi}"
+                        sh "ssh -o StrictHostKeyChecking=no ec2-user@ec2-18-220-242-141.us-east-2.compute.amazonaws.com ${dockerRun}"
+                    }   
+                }
+            }
+        }
 
        stage('Clean WorkSpace') {
            steps {
