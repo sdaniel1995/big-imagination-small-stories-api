@@ -9,9 +9,13 @@ spring:
     show-sql: true
   h2:
     console:
+      settings:
+        web-allow-others: true
       enabled: true
       path: /h2
   servlet:
     multipart:
       max-file-size: 10MB
       max-request-size: 10MB
+
+      spring.h2.console.settings.web-allow-others=true
