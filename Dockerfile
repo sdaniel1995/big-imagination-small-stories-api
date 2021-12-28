@@ -12,7 +12,7 @@ ENV PORT 8081
 EXPOSE 8081
 
 # Copy jar files from local machine to Docker Container
-COPY build/libs/tic-tac-toe-api-0.0.1-SNAPSHOT.jar /opt/app.jar
+COPY build/libs/big-imagination-small-stories-api-0.0.1-SNAPSHOT.jar /opt/app.jar
 
 # Configures the container to be run as an executable.
 ENTRYPOINT ["java","-jar","/opt/app.jar"]
