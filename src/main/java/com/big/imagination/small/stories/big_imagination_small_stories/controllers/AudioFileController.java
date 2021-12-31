@@ -52,7 +52,7 @@ public class AudioFileController {
         List<ResponseFile> files = audioFileService.getAllFiles().map(dbFile -> {
             String fileDownloadUri = ServletUriComponentsBuilder
                     .fromCurrentContextPath()
-                    .path("/files/")
+                    .path("/api/files/")
                     .path(dbFile.getId())
                     .toUriString();
 
