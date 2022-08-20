@@ -1,11 +1,11 @@
 package com.big.imagination.small.stories.big_imagination_small_stories.repositories;
 
-import com.big.imagination.small.stories.big_imagination_small_stories.models.AudioFile;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface AudioFileRepository extends JpaRepository<AudioFile, Integer> {
+import com.big.imagination.small.stories.big_imagination_small_stories.models.Series;
 
+@Repository
+public interface SeriesRepository extends JpaRepository<Series, String> {
+    
 }

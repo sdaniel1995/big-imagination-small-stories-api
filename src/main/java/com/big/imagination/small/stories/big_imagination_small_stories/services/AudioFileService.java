@@ -26,7 +26,7 @@ public class AudioFileService {
         return audioFileRepository.save(audioFile);
     }
 
-    public AudioFile getFile(String id) {
+    public AudioFile getFile(Integer id) {
         return audioFileRepository.findById(id).get();
     }
 

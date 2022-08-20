@@ -53,7 +53,7 @@ public class AudioFileController {
             String fileDownloadUri = ServletUriComponentsBuilder
                     .fromCurrentContextPath()
                     .path("/api/files/")
-                    .path(dbFile.getId())
+                    .path(Integer.toString(dbFile.getId()))
                     .toUriString();
 
             return new ResponseFile(
@@ -68,7 +68,7 @@ public class AudioFileController {
     }
 
     @GetMapping("/files/{id}")
-    public ResponseEntity<byte[]> getFile(@PathVariable String id) {
+    public ResponseEntity<byte[]> getFile(@PathVariable Integer id) {
         AudioFile fileDB = audioFileService.getFile(id);
 
         return ResponseEntity.ok()
