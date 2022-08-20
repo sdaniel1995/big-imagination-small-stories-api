@@ -1,26 +1,36 @@
 package com.big.imagination.small.stories.big_imagination_small_stories.message;
 
 public class ResponseFile {
-    private String name;
+    private String series;
+    private String chapter;
     private String url;
     private String type;
     private byte[] data;
     private long size;
 
-    public ResponseFile(String name, String url, String type, byte[] data, long size) {
-        this.name = name;
+    public ResponseFile(String series, String chapter, String url, String type, byte[] data, long size) {
+        this.series = series;
+        this.chapter = chapter;
         this.url = url;
         this.type = type;
         this.data = data;
         this.size = size;
     }
 
-    public String getName() {
-        return name;
+    public String getSeries() {
+        return series;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String series) {
+        this.series = series;
+    }
+
+    public String getChapter() {
+        return chapter;
+    }
+
+    public void setChapter(String chapter) {
+        this.chapter = chapter;
     }
 
     public String getUrl() {

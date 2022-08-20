@@ -34,15 +34,15 @@ public class AudioFileController {
     }
 
     @PostMapping("/upload")
-    public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
+    public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file, String series, String chapter) {
         String message = "";
         try {
-            audioFileService.store(file);
+            audioFileService.store(file, series, chapter);
 
-            message = "Uploaded the file successfully: " + file.getOriginalFilename();
+            message = "Uploaded the file successfully: " + series;
             return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
         } catch (Exception e) {
-            message = "Could not upload the file: " + file.getOriginalFilename() + "!";
+            message = "Could not upload the file: " + series + "!";
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
         }
     }
@@ -57,7 +57,8 @@ public class AudioFileController {
                     .toUriString();
 
             return new ResponseFile(
-                    dbFile.getName(),
+                    dbFile.getSeries(),
+                    dbFile.getChapter(),
                     fileDownloadUri,
                     dbFile.getType(),
                     dbFile.getData(),
@@ -72,7 +73,7 @@ public class AudioFileController {
         AudioFile fileDB = audioFileService.getFile(id);
 
         return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileDB.getName() + "\"")
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileDB.getSeries() + "\"")
                 .body(fileDB.getData());
     }
 

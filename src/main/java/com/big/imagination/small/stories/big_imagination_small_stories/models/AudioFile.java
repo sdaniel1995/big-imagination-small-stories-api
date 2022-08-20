@@ -16,7 +16,10 @@ public class AudioFile {
     private Integer id;
 
     @Column
-    private String name;
+    private String series;
+
+    @Column
+    private String chapter;
 
     @Column
     private String type;
@@ -28,8 +31,9 @@ public class AudioFile {
 
     }
 
-    public AudioFile(String name, String type, byte[] data) {
-        this.name = name;
+    public AudioFile(String series, String chapter, String type, byte[] data) {
+        this.series = series;
+        this.chapter = chapter;
         this.type = type;
         this.data = data;
     }
@@ -38,12 +42,20 @@ public class AudioFile {
         return this.id;
     }
 
-    public String getName() {
-        return name;
+    public String getSeries() {
+        return series;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String series) {
+        this.series = series;
+    }
+
+    public String getChapter() {
+        return chapter;
+    }
+
+    public void setChapter(String chapter) {
+        this.chapter = chapter;
     }
 
     public String getType() {

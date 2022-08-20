@@ -8,7 +8,6 @@ import com.big.imagination.small.stories.big_imagination_small_stories.repositor
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
@@ -20,9 +19,8 @@ public class AudioFileService {
         this.audioFileRepository = audioFileRepository;
     }
 
-    public AudioFile store(MultipartFile file) throws IOException {
-        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-        AudioFile audioFile = new AudioFile(fileName, file.getContentType(), file.getBytes());
+    public AudioFile store(MultipartFile file, String series, String chapter) throws IOException {
+        AudioFile audioFile = new AudioFile(series, chapter, file.getContentType(), file.getBytes());
         return audioFileRepository.save(audioFile);
     }
 
